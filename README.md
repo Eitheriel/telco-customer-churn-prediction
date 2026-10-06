@@ -50,7 +50,7 @@ The following models were evaluated using stratified cross-validation:
 - Random Forest
 - Gradient Boosting
 
-Despite its lower complexity, Logistic Regression achieved performance comparable to the ensemble models and was selected as the final production candidate.
+Despite its lower complexity, Logistic Regression achieved performance comparable to the ensemble models and was selected as the final production candidate. Gradient Boosting achieved a slightly higher cross-validated PR-AUC, but the improvement was modest relative to the additional model complexity. Logistic Regression was therefore selected because it provides competitive performance while offering substantially better interpretability and simpler deployment.
 
 
 ## Feature Selection and Engineering
