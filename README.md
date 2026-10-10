@@ -41,6 +41,14 @@ The project is organized into several stages:
 7. Final model selection and evaluation
 8. Production API and cloud deployment — planned
 
+## Next Steps
+
+- Deploy the Docker image to Amazon ECR
+- Run the application in AWS using ECS/Fargate
+- Configure a public API endpoint
+- Add cloud logging and monitoring
+- Add CI/CD for automated testing and deployment
+- Extend the project with business-oriented churn prioritization
 
 ## Models Evaluated
 
