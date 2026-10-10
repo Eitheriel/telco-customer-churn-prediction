@@ -1,8 +1,9 @@
 # Telco Customer Churn Prediction
 
-An end-to-end Data Science project focused on predicting customer churn using the IBM Telco Customer Churn dataset. The project covers the main stages of a machine learning workflow, including data understanding, preprocessing, exploratory data analysis, statistical analysis, feature selection, feature engineering, model comparison, hyperparameter tuning, threshold optimization, and final model evaluation. The current final model is a Logistic Regression pipeline selected for its competitive predictive performance, simplicity, interpretability, and suitability for production deployment.
+An end-to-end Data Science project focused on predicting customer churn using the IBM Telco Customer Churn dataset. The project covers the main stages of a machine learning workflow, including data understanding, preprocessing, exploratory data analysis, statistical analysis, feature selection, feature engineering, model comparison, hyperparameter tuning, threshold optimization, and final model evaluation. 
 
-Production deployment through an API, Docker, and cloud infrastructure is planned as the next stage of the project.
+The final model is a Logistic Regression pipeline selected for its competitive predictive performance, simplicity, interpretability, and suitability for production deployment. The model is exposed through a FastAPI REST API, containerized with Docker, stored in Amazon ECR, and deployed as a running service on AWS ECS/Fargate.
+
 
 
 ## Business Problem
@@ -25,7 +26,11 @@ Develop a classification model that predicts whether a customer is likely to chu
 - Evaluate different feature sets and feature engineering approaches.
 - Optimize model hyperparameters.
 - Analyze the precision-recall trade-off and classification threshold.
-- Select a model suitable for future production deployment.
+- Select a model suitable for production deployment.
+- Build a reusable inference layer and REST API.
+- Add input validation and automated API tests.
+- Containerize the application with Docker.
+- Deploy the model as a cloud service on AWS.
 
 
 ## Project Workflow
@@ -39,16 +44,56 @@ The project is organized into several stages:
 5. Baseline model development
 6. Model comparison, feature selection, and hyperparameter tuning
 7. Final model selection and evaluation
-8. Production API and cloud deployment — planned
+8. Model serialization and inference preparation
+9. REST API development with FastAPI
+10. Input validation and automated testing
+11. Docker containerization
+12. Deployment to AWS using Amazon ECR and ECS/Fargate
+
+## Deployment
+
+The final model is deployed as a containerized REST API. The deployment workflow is:
+
+```text
+Trained scikit-learn pipeline
+        ↓
+Serialized model artifact
+        ↓
+FastAPI inference service
+        ↓
+Pydantic input validation
+        ↓
+Automated API tests
+        ↓
+Docker image
+        ↓
+Amazon ECR
+        ↓
+Amazon ECS / Fargate
+        ↓
+Public HTTPS endpoint
+```
+
+The deployed API exposes:
+
+- `GET /` — service health / basic API response
+- `POST /predict` — churn probability and classification
+- `/docs` — automatically generated Swagger/OpenAPI documentation
+
+## Live API
+
+The churn prediction API is deployed on AWS ECS/Fargate and is publicly accessible.
+
+- [API root](https://ch-298d8238ea5e43188b4e00693b316a3c.ecs.eu-north-1.on.aws/)
+- [Swagger documentation](https://ch-298d8238ea5e43188b4e00693b316a3c.ecs.eu-north-1.on.aws/docs)
 
 ## Next Steps
-
-- Deploy the Docker image to Amazon ECR
-- Run the application in AWS using ECS/Fargate
-- Configure a public API endpoint
-- Add cloud logging and monitoring
-- Add CI/CD for automated testing and deployment
+- Add CI/CD for automated testing, Docker image builds, and deployment
+- Improve cloud monitoring and logging
+- Add model and data drift monitoring
+- Add model versioning
 - Extend the project with business-oriented churn prioritization
+- Evaluate retention decisions using both churn risk and customer value
 
 ## Models Evaluated
 
@@ -118,5 +163,12 @@ The model correctly identifies approximately 72% of actual churn customers. The 
 - Matplotlib
 - Seaborn
 - Jupyter Notebook
+- FastAPI
+- Pydantic
+- pytest
+- Docker
+- Amazon ECR
+- Amazon ECS / AWS Fargate
+- AWS CloudWatch
 - Git
 - VS Code
